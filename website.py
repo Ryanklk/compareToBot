@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask import request
 from bs4 import BeautifulSoup
 import selenium
 import time
@@ -19,19 +20,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return '<h1> compareToBot </h1>'
+    return render_template('index.html')
 
-@app.route('/search/<searchresult>')
-def search_page(searchresult):
-    search.send_keys(searchresult)
+@app.route('/destination.html')
+def destination():
+    searched = request.args.get('username')
+    search.send_keys(searched)
     search.send_keys(Keys.RETURN)
     names = []
     links = []
     items = driver.find_elements_by_class_name('col-xs-2-4.shopee-search-item-result__item')
     all_items = driver.find_elements_by_xpath('//div[@data-sqe="name"]')
     all_links = driver.find_elements_by_xpath('//a[@data-sqe="link"]')
+    #all_images = driver.find_elements_by_xpath('//img')
     for i in range(len(all_items)):
         names += {all_items[i].find_element_by_xpath(".//*").text}
         links += {all_links[i].get_attribute("href")}
+        #images += {all_images[i].get_attribute("src")}
+
     driver.quit()
-    return render_template('result.html', names = names, links = links, length = len(names))
+    return render_template('result.html', names = names, links = links, length = len(names)) #images = images)
