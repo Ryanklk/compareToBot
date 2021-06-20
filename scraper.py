@@ -25,10 +25,13 @@ search.send_keys(x)
 search.send_keys(Keys.RETURN)
 
 #outputs item name and item link
-items = driver.find_elements_by_class_name('col-xs-2-4.shopee-search-item-result__item')
 all_items = driver.find_elements_by_xpath('//div[@data-sqe="name"]')
 all_links = driver.find_elements_by_xpath('//a[@data-sqe="link"]')
+all_images = driver.find_elements_by_xpath('//img')
 for i in range(len(all_items)):
+    
+    
     print(all_items[i].find_element_by_xpath(".//*").text)
     print(all_links[i].get_attribute("href"))
+    print(all_images[i].get_attribute("src"))
 driver.quit()
