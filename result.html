@@ -17,13 +17,43 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <p style="color: white;">Product</p>
+              <form action="destination.html" method="GET">
+                <fieldset>
+                  <input type="text" name="product">
+                </fieldset
+              </form>
+            </li>
+            <li class="nav-item">
+              <p style="color: white;">Location</p>
+              <form action="destination.html" method="GET">
+                <fieldset>
+                  <input type="text" name="location">
+                  <input type="submit">
+                </fieldset
+              </form>
+            </li>
+          </ul>
         </div>
     </nav>
     <h1>Result Page</h1>
     <hr/>
     {% for i in range(length) %}
-      <h4>{{ names[i] }}</h4>
-      <a href={{ links[i] }}>check out item</a>
+      <!-- <h4>{{ names[i] }}</h4> -->
+      <a href={{ links[i] }}>{{ names[i] }}</a>
+      <br/>
+      <img width="100" height="100" src={{ images[i] }} alt={{ names[i] }} />
+      <h4>${{ prices[i] }}</h4>
+      <h6>{{ countries[i] }}</h6>
+
 
     {% endfor %}
 
