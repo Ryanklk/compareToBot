@@ -48,6 +48,9 @@ for items in x:
     print(items.find_element_by_class_name("GridItem__title___8JShU").find_element_by_tag_name("a").get_attribute("title"))
     print(items.find_element_by_class_name("GridItem__title___8JShU").find_element_by_tag_name("a").get_attribute("href"))
     print(items.find_element_by_class_name("index__image___1YObI ").get_attribute("src"))
+    print(items.find_element_by_class_name("index__currency___Q78Jz ").text)
+    print(items.find_element_by_class_name("GridItem__location___1KUwM  ").text)
+    
     
 
 
