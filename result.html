@@ -36,8 +36,8 @@
               <p style="color: white;">Location</p>
               <form action="destination.html" method="GET">
                 <fieldset>
-                  <input type="text" name="location">
-                  <input type="submit">
+                  <input type="checkbox" name="location" value = "Singapore Only">
+                  <label for="location"> Singapore Only</label>
                 </fieldset
               </form>
             </li>
@@ -47,12 +47,12 @@
     <h1>Result Page</h1>
     <hr/>
     {% for i in range(length) %}
-      <!-- <h4>{{ names[i] }}</h4> -->
-      <a href={{ links[i] }}>{{ names[i] }}</a>
+      <a href={{ products[i].link }}>{{ products[i].name }}</a>
       <br/>
-      <img width="100" height="100" src={{ images[i] }} alt={{ names[i] }} />
-      <h4>${{ prices[i] }}</h4>
-      <h6>{{ countries[i] }}</h6>
+      <img width="100" height="100" src={{ products[i].image }} alt={{ products[i].name }} />
+      <h4>${{ products[i].price }}</h4>
+      <h6>{{ products[i].country }}</h6>
+      <h6>{{ products[i].platform }}</h6>
 
 
     {% endfor %}
