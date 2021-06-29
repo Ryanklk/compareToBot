@@ -1,3 +1,0 @@
-# compareToBot
-
-Hello World
