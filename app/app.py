@@ -34,7 +34,7 @@ def shopee(search_item,country,overseas):
 
     #PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     #driver = webdriver.Chrome(PATH)
-    driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome('./chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
@@ -67,7 +67,7 @@ def shopee(search_item,country,overseas):
 def lazada(search_item,country,overseas):
     # PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     # driver = webdriver.Chrome(PATH)
-    driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome('./chromedriver')
     driver.get('https://lazada.sg')
     search = driver.find_element_by_id('q')
 
