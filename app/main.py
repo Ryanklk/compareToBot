@@ -13,7 +13,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import multiprocessing
 import concurrent.futures
-from webdriver_manager.chrome import ChromeDriverManager
 
 app = Flask(__name__)
 
@@ -35,7 +34,7 @@ def shopee(search_item,country,overseas):
 
     #PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     #driver = webdriver.Chrome(PATH)
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome('webdriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
@@ -68,7 +67,7 @@ def shopee(search_item,country,overseas):
 def lazada(search_item,country,overseas):
     # PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     # driver = webdriver.Chrome(PATH)
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome('webdriver')
     driver.get('https://lazada.sg')
     search = driver.find_element_by_id('q')
 
