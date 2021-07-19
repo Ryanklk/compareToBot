@@ -32,7 +32,7 @@ class Product:
 
 def shopee(search_item,country,overseas):
 
-    PATH = "C:\Program Files (x86)\chromedriver.exe"
+    PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     driver = webdriver.Chrome(PATH)
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
@@ -64,7 +64,7 @@ def shopee(search_item,country,overseas):
     return products
 
 def lazada(search_item,country,overseas):
-    PATH = "C:\Program Files (x86)\chromedriver.exe"
+    PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     driver = webdriver.Chrome(PATH)
     driver.get('https://lazada.sg')
     search = driver.find_element_by_id('q')
