@@ -13,6 +13,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import multiprocessing
 import concurrent.futures
+from webdriver_manager.chrome import ChromeDriverManager
 
 app = Flask(__name__)
 
