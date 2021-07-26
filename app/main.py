@@ -54,6 +54,7 @@ def shopee(search_item,country,overseas):
     #driver = webdriver.Chrome('./chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
+    print(driver.find_element_by_xpath('//*').get_attribute("innerHTML"))
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
 
     search.send_keys(search_item)
