@@ -13,8 +13,15 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import multiprocessing
 import concurrent.futures
+import os
 
 app = Flask(__name__)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 @app.route('/')
 def hello_world():
@@ -34,7 +41,7 @@ def shopee(search_item,country,overseas):
 
     #PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     #driver = webdriver.Chrome(PATH)
-    driver = webdriver.Chrome('./chromedriver')
+    #driver = webdriver.Chrome('./chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
@@ -67,7 +74,7 @@ def shopee(search_item,country,overseas):
 def lazada(search_item,country,overseas):
     # PATH = "/Users/ryankoh/Desktop/Me/Orbital/Selenium Test/chromedriver"
     # driver = webdriver.Chrome(PATH)
-    driver = webdriver.Chrome('./chromedriver')
+    #driver = webdriver.Chrome('./chromedriver')
     driver.get('https://lazada.sg')
     search = driver.find_element_by_id('q')
 
