@@ -30,6 +30,7 @@ chrome_options.add_argument("--no-sandbox");
 chrome_options.add_argument("--ignore-certificate-errors");
 chrome_options.add_argument("--no-first-run");
 chrome_options.add_argument("--no-default-browser-check");
+chrome_options.add_argument('--allow-running-insecure-content')
 
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
@@ -54,7 +55,8 @@ def shopee(search_item,country,overseas):
     #driver = webdriver.Chrome('./chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
-    print(driver.find_element_by_xpath('//*').get_attribute("innerHTML"))
+    driver.get_screenshot_as_file("screenshot.png")
+    print("HEllo WORLD")
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
 
     search.send_keys(search_item)
