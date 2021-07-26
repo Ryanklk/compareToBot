@@ -55,7 +55,7 @@ def shopee(search_item,country,overseas):
     #driver = webdriver.Chrome('./chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
-    driver.get_screenshot_as_file("screenshot.png")
+    time.sleep(3)
     print("HEllo WORLD")
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
 
@@ -89,8 +89,9 @@ def lazada(search_item,country,overseas):
     # driver = webdriver.Chrome(PATH)
     #driver = webdriver.Chrome('./chromedriver')
     driver.get('https://lazada.sg')
+    
     search = driver.find_element_by_id('q')
-
+    time.sleep(3)
     products = []
     #x = input("What are you looking for?")
     search.send_keys(search_item)
