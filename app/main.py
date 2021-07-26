@@ -58,7 +58,6 @@ def shopee(search_item,country,overseas):
     time.sleep(3)
     print("HEllo WORLD")
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
-
     search.send_keys(search_item)
     search.send_keys(Keys.RETURN)
     products = []
