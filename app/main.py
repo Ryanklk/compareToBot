@@ -153,8 +153,10 @@ def lazada(search_item,country,overseas):
                 countries = items.find_element_by_class_name("GridItem__location___1KUwM  ").text
                 image = items.find_element_by_class_name("index__image___1YObI ").get_attribute("src")
                 products += {Product(name,link,countries,image,price,"Lazada")}
+        print(search)
         return products
     except:
+        print(search)
         return products
 
 
