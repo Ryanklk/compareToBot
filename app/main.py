@@ -39,11 +39,13 @@ class Product:
 
 def shopee(search_item,country,overseas):
 
+    print("HI WORLD")
     driver = webdriver.Chrome('chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
-    driver.implicitly_wait(50)
+    #driver.implicitly_wait(50)
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
+    print("HEllo BYE WORLD")
     search.send_keys(search_item)
     search.send_keys(Keys.RETURN)
     products = []
