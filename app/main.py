@@ -17,32 +17,30 @@ import concurrent.futures
 import os
 
 app = Flask(__name__)
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--window-size=1920,1080");
-chrome_options.add_argument("--disable-extensions");
-chrome_options.add_argument("--proxy-server='direct://'");
-chrome_options.add_argument("--proxy-bypass-list=*");
-chrome_options.add_argument("--start-maximized");
-chrome_options.add_argument("--headless");
-chrome_options.add_argument("--disable-gpu");
-chrome_options.add_argument("--disable-dev-shm-usage");
-chrome_options.add_argument("--no-sandbox");
-chrome_options.add_argument("--ignore-certificate-errors");
-chrome_options.add_argument("--no-first-run");
-chrome_options.add_argument("--no-default-browser-check");
-chrome_options.add_argument('--allow-running-insecure-content')
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# chrome_options.add_argument("--window-size=1920,1080");
+# chrome_options.add_argument("--disable-extensions");
+# chrome_options.add_argument("--proxy-server='direct://'");
+# chrome_options.add_argument("--proxy-bypass-list=*");
+# chrome_options.add_argument("--start-maximized");
+# chrome_options.add_argument("--headless");
+# chrome_options.add_argument("--disable-gpu");
+# chrome_options.add_argument("--disable-dev-shm-usage");
+# chrome_options.add_argument("--no-sandbox");
+# chrome_options.add_argument("--ignore-certificate-errors");
+# chrome_options.add_argument("--no-first-run");
+# chrome_options.add_argument("--no-default-browser-check");
+# chrome_options.add_argument('--allow-running-insecure-content')
 
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 @app.route('/')
 def hello_world():
-    #return render_template('asdf.html')
     return render_template('asdd.html')
 
 @app.route('/homepage.html')
 def hello_world1():
-    #return render_template('asdf.html')
     return render_template('asdd.html')
 
 class Product:
@@ -57,17 +55,13 @@ class Product:
 
 def shopee(search_item,country,overseas):
 
-    print("HI WORLD")
-    #driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome('./chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
-    #driver.implicitly_wait(50)
     search = driver.find_element_by_class_name('shopee-searchbar-input__input')
-    print("HEllo BYE WORLD")
     search.send_keys(search_item)
 
     search.send_keys(Keys.RETURN)
-    print("Elijah")
     products = []
 
     try:
@@ -118,20 +112,15 @@ def shopee(search_item,country,overseas):
         return products
 
 def lazada(search_item,country,overseas):
-    #driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome('./chromedriver')
     driver.get('https://lazada.sg')
     search = driver.find_element_by_id('q')
 
     products = []
-    #x = input("What are you looking for?")
+    
     search.send_keys(search_item)
     search.send_keys(Keys.RETURN)
-    #driver.implicitly_wait(5)
-    #driver.quit()
-
-    #driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    #time.sleep(5)
-    #driver.execute_script("window.scrollTo(0, 1040)")
+    
     try:
 
         for _ in range(30):
@@ -144,9 +133,7 @@ def lazada(search_item,country,overseas):
                 time.sleep(0.6)
 
         for items in x:
-            #print(x[i].find_element_by_tag_name("a").get_attribute("title"))
-            #print(x[i].find_element_by_tag_name("a").get_attribute("href"))
-            #print(b[i].get_attribute("src"))
+            
 
             place = items.find_element_by_class_name("GridItem__location___1KUwM  ").text
             if overseas == None:
@@ -178,26 +165,19 @@ def lazada(search_item,country,overseas):
                 countries = items.find_element_by_class_name("GridItem__location___1KUwM  ").text
                 image = items.find_element_by_class_name("index__image___1YObI ").get_attribute("src")
                 products += {Product(name,link,countries,image,price,"Lazada")}
-        #print(search)
+        
         return products
     except:
-        #print(search)
+        
         return products
 
 
-#@app.route('/static/destination2.html')
 
-#def destination2():
-    #change page 2 to a form and submit the products in
-    #return render_template('shop.html', products = all_products[3],length = 6)
 
 
 
 
 @app.route('/destination.html')
-#2 methods for this
-#1: search up as much as possible(there will be a fixed number of search results)
-#2: everytime the user presses the next page rerun the program to search from the last result onwards
 def destination():
     search_item = request.args.get('product')
     country = request.args.get('location')
@@ -229,8 +209,7 @@ def destination():
             products += l.result()
         except:
             pass
-    #products += shopee(search_item,country,overseas)
-    #products += lazada(search_item,country,overseas)
+    
 
     text = f"Your search for '{search_item}' did not have any results. Please try searching with a different keyword!"
     if len(products) == 0:
@@ -248,5 +227,5 @@ def destination():
             break
 
 
-    #return render_template('result.html', names = names, links = links, length = len(names), countries=countries, images = images, prices = prices)
+    
     return render_template('shop.html', products = products, length = len(products))
