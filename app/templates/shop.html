@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Shop | E-Shopper</title>
+    <title>compareToBot</title>
     <link href="{{ url_for('static', filename= 'css/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename= 'css/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename= 'css/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -40,20 +40,20 @@
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Search Results</h2>
-            {% for i in range(10) %}
+            {% for i in range(length) %}
             <div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src={{ products[i].image }} alt="" />
+										<img src={{ products[i].image }} alt="" style="width:150px;height:150px;"/>
 										<h2>${{ products[i].price }}</h2>
-										<p>{{ products[i].name }}</p>
+										<p>{{ products[i].name[:45] }}...</p>
 										<a href={{ products[i].link }} class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Check out item</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>${{ products[i].price }}</h2>
-											<p>{{ products[i].name }}</p>
+											<p>{{ products[i].name[:45] }}</p>
                       <p>{{ products[i].country }}</p>
                       <p>{{ products[i].platform }}</p>
 											<a href="{{ products[i].link }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Check out item</a>
@@ -71,7 +71,7 @@
             {% endfor %}
 						<ul class="pagination">
 							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
+							<li><a href="{{ url_for('static', filename= 'destination2.html') }}">2</a></li>
 							<li><a href="">3</a></li>
 							<li><a href="">&raquo;</a></li>
 						</ul>
