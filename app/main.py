@@ -51,7 +51,7 @@ def shopee(search_item,country,overseas):
     products = []
 
     try:
-        #driver.implicitly_wait(50)
+        driver.implicitly_wait(10)
         for _ in range(30):
             try:
                 all_items = driver.find_elements_by_xpath('//div[@data-sqe="name"]')
