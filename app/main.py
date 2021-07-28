@@ -214,23 +214,23 @@ def destination():
         return render_template('Contact.html', text = text)
 
 
-    # with concurrent.futures.ProcessPoolExecutor() as executor:
-    #     if sh:
-    #         s = executor.submit(shopee,search_item,country,overseas)
-    #     if la:
-    #         l = executor.submit(lazada,search_item,country,overseas)
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        if sh:
+            s = executor.submit(shopee,search_item,country,overseas)
+        if la:
+            l = executor.submit(lazada,search_item,country,overseas)
 
-    #     try:
-    #         products += s.result()
-    #     except:
-    #         pass
+        try:
+            products += s.result()
+        except:
+            pass
 
-    #     try:
-    #         products += l.result()
-    #     except:
-    #         pass
-    products += shopee(search_item,country,overseas)
-    products += lazada(search_item,country,overseas)
+        try:
+            products += l.result()
+        except:
+            pass
+    #products += shopee(search_item,country,overseas)
+    #products += lazada(search_item,country,overseas)
 
     text = f"Your search for '{search_item}' did not have any results. Please try searching with a different keyword!"
     if len(products) == 0:
