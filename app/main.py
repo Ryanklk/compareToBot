@@ -66,6 +66,7 @@ def shopee(search_item,country,overseas):
     print("HEllo BYE WORLD")
     search.send_keys(search_item)
     search.send_keys(Keys.RETURN)
+    print("Elijah")
     products = []
 
     try:
