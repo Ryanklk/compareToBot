@@ -14,8 +14,26 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import multiprocessing
 import concurrent.futures
+import os
 
 app = Flask(__name__)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--window-size=1920,1080");
+chrome_options.add_argument("--disable-extensions");
+chrome_options.add_argument("--proxy-server='direct://'");
+chrome_options.add_argument("--proxy-bypass-list=*");
+chrome_options.add_argument("--start-maximized");
+chrome_options.add_argument("--headless");
+chrome_options.add_argument("--disable-gpu");
+chrome_options.add_argument("--disable-dev-shm-usage");
+chrome_options.add_argument("--no-sandbox");
+chrome_options.add_argument("--ignore-certificate-errors");
+chrome_options.add_argument("--no-first-run");
+chrome_options.add_argument("--no-default-browser-check");
+chrome_options.add_argument('--allow-running-insecure-content')
+
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 @app.route('/')
 def hello_world():
@@ -40,7 +58,7 @@ class Product:
 def shopee(search_item,country,overseas):
 
     #print("HI WORLD")
-    driver = webdriver.Chrome('chromedriver')
+    #driver = webdriver.Chrome('chromedriver')
     wait = WebDriverWait(driver,1)
     driver.get('https://shopee.sg/')
     #driver.implicitly_wait(50)
@@ -98,7 +116,7 @@ def shopee(search_item,country,overseas):
         return products
 
 def lazada(search_item,country,overseas):
-    driver = webdriver.Chrome('chromedriver')
+    #driver = webdriver.Chrome('chromedriver')
     driver.get('https://lazada.sg')
     search = driver.find_element_by_id('q')
 
