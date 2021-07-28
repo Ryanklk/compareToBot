@@ -90,6 +90,7 @@ def shopee(search_item,country,overseas):
                 images = all_images[i].get_attribute("src")
                 prices = float(all_prices[i].find_element_by_class_name('_24JoLh').text.replace(',',''))
                 products += {Product(names,links,countries,images,prices,"Shopee")}
+        print("try")
         print(products)
         return products
     except:
